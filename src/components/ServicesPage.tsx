@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FileCheck, Shield, Truck, FlaskConical, Cog, X } from 'lucide-react';
 import { Button } from './ui/button';
+import servicesHeroImage from 'figma:asset/7eb1da474307d18fa848a50bf7aa626fba22530f.png';
 
 interface ServicesPageProps {
   t: any;
@@ -12,64 +13,45 @@ export function ServicesPage({ t }: ServicesPageProps) {
 
   const services = [
     {
-      icon: FileCheck,
-      title: t.services.chemicalImport,
-      short: t.services.importShort,
-      full: t.services.importFull,
-      features: [
-        t.services.regulatoryCompliance,
-        t.services.importPermit,
-        t.services.customsDocs,
-        t.services.classificationLabeling,
-      ],
-    },
-    {
-      icon: Shield,
-      title: t.services.safetyConsulting,
-      short: t.services.safetyShort,
-      full: t.services.safetyFull,
-      features: [
-        t.services.riskAssessment,
-        t.services.safetyProtocol,
-        t.services.emergencyPlanning,
-        t.services.staffTraining,
-      ],
-    },
-    {
-      icon: Truck,
-      title: t.services.logisticsCoord,
-      short: t.services.logisticsShort,
-      full: t.services.logisticsFull,
-      features: [
-        t.services.supplyChain,
-        t.services.transportCoord,
-        t.services.storageSolutions,
-        t.services.inventoryMgmt,
-      ],
-    },
-    {
-      icon: FlaskConical,
-      title: t.services.labTesting,
-      short: t.services.labShort,
-      full: t.services.labFull,
-      features: [
-        t.services.chemicalAnalysis,
-        t.services.qualityControl,
-        t.services.contaminationDetection,
-        t.services.complianceVerification,
-      ],
-    },
-    {
       icon: Cog,
-      title: t.services.cyanideProcess,
-      short: t.services.cyanideShort,
-      full: t.services.cyanideFull,
+      title: t.services.miningTech || 'Mining Production Technology Management',
+      short: t.services.miningTechDesc || 'Comprehensive solutions for optimizing processing plant operations',
+      full: t.services.miningTechDesc || 'We offer comprehensive solutions for optimizing concentrator and processing plant operations, including stabilizing technological regimes, coordinating equipment operations, ensuring reliable operations, and optimizing key production parameters. We also organize training for key technological personnel and provide expert advice on storage, usage, and neutralization of chemicals used in plant operations.',
       features: [
         t.services.processEngineering,
         t.services.safetyIntegration,
         t.services.efficiencyOpt,
-        t.services.environmentalCompliance,
+        t.services.staffTraining,
       ],
+      image: 'https://images.unsplash.com/photo-1579240939813-446dc2b601dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBjaGVtaWNhbCUyMHByb2Nlc3NpbmclMjBpbmR1c3RyaWFsJTIwcGxhbnR8ZW58MXx8fHwxNzcwMjY0NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    },
+    {
+      icon: Shield,
+      title: t.services.chemicalConsulting || 'Chemical Consulting Services',
+      short: t.services.chemicalConsultingDesc || 'Consulting services for hazardous chemical supply, storage, safe use, and waste management',
+      full: t.services.chemicalConsultingDesc || 'We provide consulting services in the supply, storage, safe use, neutralization of hazardous chemicals used in production, and hazardous waste management. We also offer training programs for workers handling chemicals and hazardous materials.',
+      features: [
+        t.services.chemicalWarehouseDesign || 'Chemical warehouse design and organization',
+        t.services.chemicalPermitSupport || 'Chemical permit and documentation support',
+        t.services.chemicalRiskAssessment || 'Risk assessment for chemical projects',
+        t.services.hazardousWasteConsulting || 'Hazardous waste management consulting',
+        t.services.workerAssessment || 'Worker assessment using case and matrix methods',
+        t.services.hazardousChemicalTraining || 'Training for workers handling hazardous chemicals',
+      ],
+      image: 'https://images.unsplash.com/photo-1748261347902-451fb437e8fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVtaWNhbCUyMHJlYWdlbnRzJTIwbWluaW5nJTIwbGFib3JhdG9yeSUyMGFuYWx5c2lzfGVufDF8fHx8MTc3MDI2NDU5NXww&ixlib=rb-4.1.0&q=80&w=1080',
+    },
+    {
+      icon: Truck,
+      title: t.services.equipmentSupply || 'Mining Equipment & Chemical Supply',
+      short: t.services.equipmentSupplyDesc || 'Sales and supply of all types of mining and heavy industry equipment, materials, and chemicals',
+      full: t.services.equipmentSupplyDesc || 'We offer sales and supply services for all types of mining and heavy industry equipment, materials, chemicals, and raw materials.',
+      features: [
+        t.services.supplyChain,
+        t.services.qualityVerification,
+        t.services.logisticsCoordination,
+        t.services.customsDocumentation,
+      ],
+      image: 'https://images.unsplash.com/photo-1752468348475-7101685ab2f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwY2hlbWlzdHJ5JTIwbWluaW5nJTIwb3BlcmF0aW9ucyUyMGZhY2lsaXR5fGVufDF8fHx8MTc3MDI2NDU5NXww&ixlib=rb-4.1.0&q=80&w=1080',
     },
   ];
 
@@ -97,9 +79,9 @@ export function ServicesPage({ t }: ServicesPageProps) {
           className="relative rounded-3xl overflow-hidden mb-16 h-64 glass"
         >
           <img
-            src="https://images.unsplash.com/photo-1675093022653-59233299f8ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwd2FyZWhvdXNlJTIwY2hlbWljYWx8ZW58MXx8fHwxNzYxNjY0MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            src={servicesHeroImage}
             alt="Services"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
         </motion.div>

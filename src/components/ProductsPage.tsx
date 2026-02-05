@@ -1,11 +1,14 @@
 import { motion } from 'motion/react';
-import { Pickaxe, Boxes, Container } from 'lucide-react';
+import { Pickaxe, Boxes, Container, Check } from 'lucide-react';
+import { Button } from './ui/button';
+import productsHeroImage from 'figma:asset/de652879478eb07de95324c5ad670cf680de5c30.png';
 
 interface ProductsPageProps {
   t: any;
+  onNavigate?: (page: string) => void;
 }
 
-export function ProductsPage({ t }: ProductsPageProps) {
+export function ProductsPage({ t, onNavigate }: ProductsPageProps) {
   const categories = [
     {
       icon: Pickaxe,
@@ -63,7 +66,7 @@ export function ProductsPage({ t }: ProductsPageProps) {
           className="relative rounded-3xl overflow-hidden mb-16 h-80 glass"
         >
           <img
-            src="https://images.unsplash.com/photo-1657244358898-d9e110504fd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZW9uJTIwY2hlbWlzdHJ5JTIwbW9sZWN1bGVzfGVufDF8fHx8MTc2MTY2NDA1N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+            src={productsHeroImage}
             alt="Products"
             className="w-full h-full object-cover"
           />
@@ -125,10 +128,21 @@ export function ProductsPage({ t }: ProductsPageProps) {
                       <div className="space-y-2 text-[#94a3b8]">
                         {Object.entries(product).map(([key, value]) => {
                           if (key === 'name') return null;
+                          
+                          // Get translated label for the key
+                          const labelMap: Record<string, string> = {
+                            purity: t.products.purity,
+                            grade: t.products.grade,
+                            type: t.products.type,
+                            capacity: t.products.capacity,
+                            standard: t.products.standard,
+                            application: t.products.application
+                          };
+                          
                           return (
-                            <div key={key} className="flex justify-between items-center">
-                              <span className="capitalize">{key}:</span>
-                              <span className="text-[#00d4ff]">{value}</span>
+                            <div key={key} className="flex justify-between items-center gap-2">
+                              <span className="text-sm">{labelMap[key] || key}:</span>
+                              <span className="text-[#00d4ff] text-sm text-right">{value}</span>
                             </div>
                           );
                         })}
@@ -152,6 +166,91 @@ export function ProductsPage({ t }: ProductsPageProps) {
           ))}
         </div>
 
+        {/* Product Benefits */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 glass rounded-3xl p-8"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-[#00d4ff]" />
+              </div>
+              <div>
+                <h4 className="mb-1 text-[#00d4ff]">{t.products.highPurity}</h4>
+                <p className="text-[#94a3b8]">{t.products.highPurityDesc}</p>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-[#00d4ff]" />
+              </div>
+              <div>
+                <h4 className="mb-1 text-[#00d4ff]">{t.products.processImprovement}</h4>
+                <p className="text-[#94a3b8]">{t.products.processImprovementDesc}</p>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-[#00d4ff]" />
+              </div>
+              <div>
+                <h4 className="mb-1 text-[#00d4ff]">{t.products.safeOperation}</h4>
+                <p className="text-[#94a3b8]">{t.products.safeOperationDesc}</p>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-[#00d4ff]" />
+              </div>
+              <div>
+                <h4 className="mb-1 text-[#00d4ff]">{t.products.costEffective}</h4>
+                <p className="text-[#94a3b8]">{t.products.costEffectiveDesc}</p>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-[#00d4ff]" />
+              </div>
+              <div>
+                <h4 className="mb-1 text-[#00d4ff]">{t.products.ecoFriendly}</h4>
+                <p className="text-[#94a3b8]"></p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -159,13 +258,16 @@ export function ProductsPage({ t }: ProductsPageProps) {
           viewport={{ once: true }}
           className="mt-16 text-center glass rounded-3xl p-12"
         >
-          <h2 className="mb-4 text-[#00d4ff]">Need a Custom Solution?</h2>
+          <h2 className="mb-4 text-[#00d4ff]">{t.products.customSolution}</h2>
           <p className="text-[#94a3b8] mb-6 max-w-2xl mx-auto">
-            We can source and supply specialized chemicals and equipment tailored to your specific requirements.
+            {t.products.customDescription}
           </p>
-          <div className="inline-block px-6 py-3 rounded-xl bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/20">
-            Contact our team for custom inquiries
-          </div>
+          <Button 
+            onClick={() => onNavigate && onNavigate('contact')}
+            className="bg-[#00d4ff] hover:bg-[#00b8e6] text-[#0a0a0f] glow-effect"
+          >
+            {t.products.contactTeam}
+          </Button>
         </motion.div>
       </div>
     </div>

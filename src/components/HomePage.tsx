@@ -1,6 +1,15 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Lightbulb, Users, TrendingUp } from 'lucide-react';
 import { Button } from './ui/button';
+import { useState, useEffect } from 'react';
+
+// Import client logos
+import oyuTolgoiLogo from 'figma:asset/6d3593b8b6bd679388efbd9cbac3360bf1b3ea1a.png';
+import erdenetLogo from 'figma:asset/e22901f3dafe644c2221239e1aa0ee992697993f.png';
+import mongolianCopperLogo from 'figma:asset/6b221c7632d25c347d8ce9b54d8252da3711ddfb.png';
+import tavanTolgoiLogo from 'figma:asset/c55c53e516bf331d213f1a04f991b615fb7b6126.png';
+import energyResourcesLogo from 'figma:asset/8f1ce8c51d857bbd3e92d0122fc69650a2ca59e6.png';
+import borooGoldLogo from 'figma:asset/0093f22f1657f1bb64eeb4d0a58b99cae6734da3.png';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -8,12 +17,46 @@ interface HomePageProps {
 }
 
 export function HomePage({ onNavigate, t }: HomePageProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const carouselImages = [
+    'https://images.unsplash.com/photo-1742205025290-f8d83fe1bb58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBtb3VudGFpbnMlMjBsYW5kc2NhcGUlMjBNb25nb2xpYXxlbnwxfHx8fDE3NzAyNjIxNDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    'https://images.unsplash.com/photo-1620323998149-82361f5aa29c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcGVuJTIwcGl0JTIwbWluaW5nJTIwYWVyaWFsfGVufDF8fHx8MTc3MDI2MjE0MHww&ixlib=rb-4.1.0&q=80&w=1080',
+    'https://images.unsplash.com/photo-1769240628173-155c849658cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBlcXVpcG1lbnQlMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3MDI2MjE0MXww&ixlib=rb-4.1.0&q=80&w=1080',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const partners = [
-    'Oyu Tolgoi',
-    'Erdenet Mining',
-    'Mongolian Copper',
-    'Tavan Tolgoi',
-    'Energy Resources',
+    {
+      name: 'Oyu Tolgoi',
+      logo: oyuTolgoiLogo
+    },
+    {
+      name: 'Erdenet Mining',
+      logo: erdenetLogo
+    },
+    {
+      name: 'Mongolian Copper',
+      logo: mongolianCopperLogo
+    },
+    {
+      name: 'Tavan Tolgoi',
+      logo: tavanTolgoiLogo
+    },
+    {
+      name: 'Energy Resources',
+      logo: energyResourcesLogo
+    },
+    {
+      name: 'Boroo Gold',
+      logo: borooGoldLogo
+    },
   ];
 
   const features = [
@@ -46,8 +89,7 @@ export function HomePage({ onNavigate, t }: HomePageProps) {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1705871433057-4bf8911f136f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwbGFib3JhdG9yeSUyMG5lb24lMjBibHVlfGVufDF8fHx8MTc2MTY2MzgyNHww&ixlib=rb-4.1.0&q=80&w=1080)',
+            backgroundImage: `url(${carouselImages[currentSlide]})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -156,18 +198,22 @@ export function HomePage({ onNavigate, t }: HomePageProps) {
             viewport={{ once: true }}
           >
             <h2 className="text-center mb-12 text-[#00d4ff]">{t.home.trustedPartners}</h2>
-            <div className="flex flex-wrap justify-center gap-8 items-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
               {partners.map((partner, index) => (
                 <motion.div
-                  key={partner}
+                  key={partner.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="glass rounded-xl px-8 py-4 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  className="glass rounded-xl p-6 cursor-pointer flex items-center justify-center h-32"
                 >
-                  <span className="text-[#94a3b8]">{partner}</span>
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
                 </motion.div>
               ))}
             </div>

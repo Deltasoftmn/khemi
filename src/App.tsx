@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Navigation } from './components/Navigation';
@@ -45,15 +44,15 @@ export default function App() {
       case 'services':
         return <ServicesPage t={t} />;
       case 'products':
-        return <ProductsPage t={t} />;
+        return <ProductsPage t={t} onNavigate={handleNavigate} />;
       case 'clients':
         return <ClientsPage t={t} />;
       case 'news':
         return <NewsPage t={t} />;
       case 'careers':
-        return <CareersPage />;
+        return <CareersPage t={t} />;
       case 'contact':
-        return <ContactPage />;
+        return <ContactPage t={t} />;
       default:
         return <HomePage onNavigate={handleNavigate} t={t} />;
     }
@@ -128,14 +127,12 @@ export default function App() {
             <div>
               <h4 className="mb-4 text-[#00d4ff]">{t.footer.quickLinks}</h4>
               <ul className="space-y-2">
-                {(
-                  [
-                    { key: 'about', label: t.nav.about },
-                    { key: 'services', label: t.nav.services },
-                    { key: 'products', label: t.nav.products },
-                    { key: 'clients', label: t.nav.clients }
-                  ] as { key: PageType; label: string }[]
-                ).map((link) => (
+                {[
+                  { key: 'about', label: t.nav.about },
+                  { key: 'services', label: t.nav.services },
+                  { key: 'products', label: t.nav.products },
+                  { key: 'clients', label: t.nav.clients }
+                ].map((link) => (
                   <li key={link.key}>
                     <button
                       onClick={() => handleNavigate(link.key)}
@@ -150,13 +147,11 @@ export default function App() {
             <div>
               <h4 className="mb-4 text-[#00d4ff]">{t.footer.resources}</h4>
               <ul className="space-y-2">
-                {(
-                  [
-                    { key: 'news', label: t.nav.news },
-                    { key: 'careers', label: t.nav.careers },
-                    { key: 'contact', label: t.nav.contact }
-                  ] as { key: PageType; label: string }[]
-                ).map((link) => (
+                {[
+                  { key: 'news', label: t.nav.news },
+                  { key: 'careers', label: t.nav.careers },
+                  { key: 'contact', label: t.nav.contact }
+                ].map((link) => (
                   <li key={link.key}>
                     <button
                       onClick={() => handleNavigate(link.key)}

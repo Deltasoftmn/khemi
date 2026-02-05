@@ -1,6 +1,14 @@
 import { motion } from 'motion/react';
 import { Building2, HandshakeIcon, Award, TrendingUp } from 'lucide-react';
 
+// Import client logos
+import oyuTolgoiLogo from 'figma:asset/6d3593b8b6bd679388efbd9cbac3360bf1b3ea1a.png';
+import erdenetLogo from 'figma:asset/e22901f3dafe644c2221239e1aa0ee992697993f.png';
+import mongolianCopperLogo from 'figma:asset/6b221c7632d25c347d8ce9b54d8252da3711ddfb.png';
+import tavanTolgoiLogo from 'figma:asset/c55c53e516bf331d213f1a04f991b615fb7b6126.png';
+import energyResourcesLogo from 'figma:asset/8f1ce8c51d857bbd3e92d0122fc69650a2ca59e6.png';
+import borooGoldLogo from 'figma:asset/0093f22f1657f1bb64eeb4d0a58b99cae6734da3.png';
+
 interface ClientsPageProps {
   t: any;
 }
@@ -12,43 +20,49 @@ export function ClientsPage({ t }: ClientsPageProps) {
       sector: t.clients.copperGold,
       partnership: '2018 - ' + t.clients.present,
       description: t.clients.chemicalSupply,
+      logo: oyuTolgoiLogo
     },
     {
       name: 'Erdenet Mining Corporation',
       sector: t.clients.copperMoly,
       partnership: '2019 - ' + t.clients.present,
       description: t.clients.labTesting,
+      logo: erdenetLogo
     },
     {
       name: 'Mongolian Copper Corporation',
       sector: t.clients.copperMining,
       partnership: '2020 - ' + t.clients.present,
       description: t.clients.importConsulting,
+      logo: mongolianCopperLogo
     },
     {
       name: 'Tavan Tolgoi',
       sector: t.clients.coalMining,
       partnership: '2021 - ' + t.clients.present,
       description: t.clients.safetyTraining,
+      logo: tavanTolgoiLogo
     },
     {
       name: 'Energy Resources LLC',
       sector: t.clients.energyMining,
       partnership: '2022 - ' + t.clients.present,
       description: t.clients.fullSpectrum,
+      logo: energyResourcesLogo
     },
     {
       name: 'Boroo Gold',
       sector: t.clients.goldMining,
       partnership: '2020 - ' + t.clients.present,
       description: t.clients.cyanideDesign,
+      logo: borooGoldLogo
     },
   ];
 
   const stats = [
-    { icon: Building2, value: '50+', label: t.clients.activeClients },
-    { icon: HandshakeIcon, value: '200+', label: t.clients.projectsCompleted },
-    { icon: Award, value: '15+', label: t.clients.industryAwards },
+    { icon: Building2, value: '46', label: t.clients.techEconomicStudiesLabel || 'Technical-Economic Feasibility Studies' },
+    { icon: HandshakeIcon, value: '15', label: t.clients.consultingProjectsLabel || 'Consulting Service Projects' },
+    { icon: Award, value: '52', label: t.clients.trainingSessionsLabel || 'Training Sessions' },
     { icon: TrendingUp, value: '98%', label: t.clients.clientSatisfaction },
   ];
 
@@ -116,8 +130,12 @@ export function ClientsPage({ t }: ClientsPageProps) {
               className="glass rounded-2xl p-6 cursor-pointer group"
             >
               <div className="flex items-start justify-between mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00d4ff] to-[#a855f7] flex items-center justify-center glow-effect">
-                  <Building2 className="w-6 h-6 text-white" />
+                <div className="w-16 h-16 rounded-xl bg-white/5 flex items-center justify-center p-2">
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
                 </div>
                 <div className="text-[#00d4ff]">{partner.partnership}</div>
               </div>

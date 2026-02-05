@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Menu, X, Sparkles, Globe } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Button } from './ui/button';
+import khimiLogo from 'figma:asset/928670237e27ee10aa208e457e45844d4d9df9e5.png';
 
 type Language = 'en' | 'mn';
 
@@ -42,11 +43,7 @@ export function Navigation({ currentPage, onNavigate, language, onLanguageChange
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2"
           >
-            <div className="relative">
-              <Sparkles className="w-8 h-8 text-[#00d4ff]" />
-              <div className="absolute inset-0 blur-md bg-[#00d4ff] opacity-50" />
-            </div>
-            <span className="text-[#00d4ff]">Khimi Consulting</span>
+            <img src={khimiLogo} alt="Khimi Consulting Logo" className="w-24 h-24" />
           </motion.button>
 
           {/* Desktop Navigation */}

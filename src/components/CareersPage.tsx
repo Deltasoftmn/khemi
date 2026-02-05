@@ -205,23 +205,6 @@ export function CareersPage() {
             ))}
           </div>
         </section>
-
-        {/* Application CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-16 glass rounded-3xl p-12 text-center"
-        >
-          <h2 className="mb-4 text-[#00d4ff]">Don't See Your Role?</h2>
-          <p className="text-[#94a3b8] mb-6 max-w-2xl mx-auto">
-            We're always looking for talented individuals to join our team. Send us your resume and
-            we'll keep you in mind for future opportunities.
-          </p>
-          <Button className="bg-[#00d4ff] hover:bg-[#00b8e6] text-[#0a0a0f] glow-effect">
-            Send General Application
-          </Button>
-        </motion.div>
       </div>
     </div>
   );
