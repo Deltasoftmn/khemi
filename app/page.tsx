@@ -143,7 +143,7 @@ export default function Home() {
                 <Globe className="w-16 h-16 text-slate-400 mb-6 stroke-[1.5]" />
                 <h3 className="text-xl font-bold text-slate-500 mb-4">Инноваци</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Бид үргэлж шинэлэг санаануудыг эрэлхийлж, салбартаа жинхэнэ үр дүнтэй үйл ажиллагааг нэвтрүүлдэг.
+                  Бид үргэлж шинэлэг санаануудыг эрэлхийлж, салбартаа үр дүнтэй үйл ажиллагааг нэвтрүүлдэг.
                 </p>
               </div>
             </div>
@@ -155,7 +155,7 @@ export default function Home() {
                 <Shield className="w-16 h-16 text-slate-400 mb-6 stroke-[1.5]" />
                 <h3 className="text-xl font-bold text-slate-500 mb-4">Аюулгүй ажиллагаа</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Бид мэдлэг, ур чадвараа тасралтгүй хөгжүүлж, хөдөлмөрийн аюулгүй байдал, эрүүл ахуйн ил тод стандарт бүхий ажлын байрыг хангадаг.
+                  Бид мэдлэг, ур чадвараа тасралтгүй хөгжүүлж, хөдөлмөрийн аюулгүй байдал, эрүүл ахуйн стандарт бүхий ажлын байрыг хангадаг.
                 </p>
               </div>
             </div>
