@@ -2,60 +2,43 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Globe, Menu } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function Navigation() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+ 
+  const isEn = pathname.startsWith("/en") || pathname === "/en";
 
-  const navItems = [
+  const navItems: {
+    name: string;
+    href: string;
+    submenu?: { name: string; href: string; }[];
+  }[] = isEn ? [
+    { name: "About Us", href: "/en/about" },
+    { name: "Services", href: "/en/services" },
+    { name: "Products", href: "/en/products" },
+    { name: "Contact", href: "/en/contact" },
+  ] : [
     { name: "Бидний тухай", href: "/about" },
-    { 
-      name: "Үйлчилгээ", 
-      href: "/services",
-      submenu: [
-        { name: "Химийн бодисын худалдаа ", href: "/services/1" },
-        { name: "Химийн бодисын аюулгүй хэрэглээ, хадгалалт, агуулахын менежментийн зөвлөгөө", href: "/services/2" },
-      ] 
-    },
-    { 
-      name: "Бүтээгдэхүүн", 
-      href: "/products",
-      submenu: [
-        { name: "Уул уурхайн флотацийн реагентууд", href: "/products/1" },
-        { name: "Уул уурхайн химийн бодис", href: "/products/2" },
-        { name: "Тоног төхөөрөмж", href: "/products/3" },
-        { name: "Аюулгүй ажиллагааны хэрэгсэл", href: "/products/4" }
-      ]
-    },
-    { name: "Харилцагчид", 
-      href: "/clients" ,
-      submenu: [
-        { name: "Уул уурхайн компаниуд", href: "/clients/1" },
-        { name: "Боловсруулах үйлдвэрүүд", href: "/clients/2" }
-      ]
-    },
-    { name: "Мэдээ, нийтлэл", 
-      href: "/news",
-      submenu: [
-        { name: "Аж үйлдвэрийн салбарын мэдээлэл", href: "/news/1" },
-        { name: "Байгаль орчны болон аюулгүй ажиллагааны мэдээ", href: "/news/2" },
-        { name: "Компанийн үйл ажиллагаа", href: "/news/3" },
-        
-      ]
-     },
-    { name: "Ажлын байр", href: "/jobs",
-      submenu: [
-        { name: "Нээлттэй ажлын байр", href: "/jobs/1" },
-        { name: "Хүний нөөцийн бодлого", href: "/jobs/2" }
-        
-      ]
-     },
+    { name: "Үйлчилгээ", href: "/services" },
+    { name: "Бүтээгдэхүүн", href: "/products" },
     { name: "Холбоо барих", href: "/contact" },
   ];
+
+  const toggleLanguage = () => {
+    if (isEn) {
+      const newPath = pathname.replace(/^\/en/, "") || "/";
+      router.push(newPath);
+    } else {
+      const newPath = pathname === "/" ? "/en" : `/en${pathname}`;
+      router.push(newPath);
+    }
+  };
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 w-full ">
@@ -63,14 +46,13 @@ export function Navigation() {
         <div className="relative flex items-center justify-between -top-5 h-25 px-20 bg-[url('/header_background.png')] bg-cover bg-center bg-no-repeat rounded-[2rem] shadow-inner">
           {/* Logo and Tagline Area */}
           <div className="flex items-center gap-6 z-10">
-            <Link href="/" className="z-10 pl-6">
+            <Link href={isEn ? "/en" : "/"} className="z-10 pl-6">
               <Image src="/logo.png" alt="Khimi Consulting Logo" width={120} height={40} className="w-auto h-10 object-contain" priority />
             </Link>
             
             <div className="hidden md:block pl-12 z-10">
               <p className="text-white/90 text-sm font-medium leading-tight max-w-[300px]">
-                Монголын уул уурхай, аж үйлдвэрийн салбар дахь 
-                найдвартай химийн шийдлүүд
+                {isEn ? "We value quality, reliability and efficiency." : "Бид чанар, найдвартай байдал, үр ашгийг эрхэмлэнэ."}
               </p>
             </div>
           </div>
@@ -98,7 +80,7 @@ export function Navigation() {
                         </svg>
                       </button>
                       {/* Absolute Dropdown */}
-                      <div className="absolute left-1/2 -translate-x-1/2 pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="absolute left-1/2 -translate-x-1/2 pt-3 w-80 md:w-[480px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                         <div className="bg-slate-950/95 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
                           {item.submenu.map((sub) => (
                             <Link
@@ -133,9 +115,12 @@ export function Navigation() {
             </div>
             
             {/* Language Switcher */}
-            <button className="ml-2 px-3 py-1.5 rounded-full bg-[#1b5e20] text-white font-medium hover:bg-[#2e7d32] transition-colors flex items-center gap-1.5 shadow-md border border-[#4caf50]">
+            <button 
+              onClick={toggleLanguage}
+              className="ml-2 px-3 py-1.5 rounded-full bg-[#1b5e20] text-white font-medium hover:bg-[#2e7d32] transition-colors flex items-center gap-1.5 shadow-md border border-[#4caf50]"
+            >
               <Globe className="w-4 h-4 text-[#81c784]" />
-              <span className="text-sm">МН/EN</span>
+              <span className="text-sm">{isEn ? "MN" : "EN"}</span>
             </button>
           </div>
 
@@ -195,9 +180,15 @@ export function Navigation() {
               
               {/* Mobile Language Switcher */}
               <div className="pt-3 border-t border-white/10 mt-2">
-                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-[#1b5e20] text-white font-semibold shadow-lg">
+                <button 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    toggleLanguage();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-[#1b5e20] text-white font-semibold shadow-lg"
+                >
                   <Globe className="w-4 h-4 text-[#81c784]" />
-                  <span>МН/EN</span>
+                  <span>{isEn ? "MN" : "EN"}</span>
                 </button>
               </div>
             </div>

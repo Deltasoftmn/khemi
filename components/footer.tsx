@@ -15,7 +15,7 @@ const Linkedin = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-72 pb-12 text-white">
+    <footer className="relative overflow-hidden pt-20 text-white">
       {/* Background Graphic Shapes */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[url('/bg_footer.png')] bg-cover bg-left opacity-90" />
@@ -24,12 +24,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 -top-10">
 
 
-        {/* Top Centered Text */}
-        <div className="text-right max-w-3xl mx-auto mb-20">
-          <p className="text-xl md:text-[30px] font-medium leading-relaxed">
-            Бид уул уурхайн үйлдвэрлэлийн тасралтгүй, аюулгүй ажиллагааг хангах зорилгоор чанартай бүтээгдэхүүн, найдвартай түншлэлээр үнэ цэнийг бүтээнэ.
-          </p>
-        </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Contact Us */}
