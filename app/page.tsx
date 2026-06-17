@@ -24,12 +24,13 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Монголын уул уурхай, үйлдвэрлэлийн найдвартай химийн шийдлүүд
+              Бид чанар, найдвартай байдал, үр ашгийг эрхэмлэнэ.
+
             </h1>
             
-            <p className="text-lg text-slate-300 mb-8 max-w-xl">
+            {/* <p className="text-lg text-slate-300 mb-8 max-w-xl">
               Хими Консалтинг ХХК нь 2018 оноос хойш Монголын уул уурхайн салбарт химийн бодисын аюулгүй ажиллагааны сургалт зөвлөгөөний чиглэлээр тогтвортой үйл ажиллагаа явуулж ирсэн.
-            </p>
+            </p> */}
 
             <Link href="/about" className="inline-flex items-center gap-3 group">
               <span className="text-[#2ecc71] text-2xl font-semibold tracking-wide group-hover:text-[#27ae60] transition-colors">
