@@ -46,7 +46,7 @@ export function Navigation() {
         <div className="relative flex items-center justify-between -top-5 h-25 px-20 bg-[url('/header_background.png')] bg-cover bg-center bg-no-repeat rounded-[2rem] shadow-inner">
           {/* Logo and Tagline Area */}
           <div className="flex items-center gap-6 z-10">
-            <Link href={isEn ? "/en" : "/"} className="z-10 pl-6">
+            <Link href={isEn ? "/en" : "/"} className="z-10 pl-12">
               <Image src="/logo.png" alt="Khimi Consulting Logo" width={120} height={40} className="w-auto h-10 object-contain" priority />
             </Link>
             
