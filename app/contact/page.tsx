@@ -11,12 +11,31 @@ export default function ContactPage() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        const data = await res.json();
+        setError(data.error || "Зурвасыг илгээхэд алдаа гарлаа. Та дахин оролдоно уу.");
+      }
+    } catch (err) {
+      setError("Холболтын алдаа гарлаа. Та интернэт холболтоо шалгаад дахин оролдоно уу.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,6 +123,11 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {error && (
+                      <div className="p-4 bg-red-50 text-red-650 rounded-xl text-sm border border-red-100">
+                        {error}
+                      </div>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {/* Name */}
                       <div className="space-y-2">
@@ -161,9 +185,10 @@ export default function ContactPage() {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#2ecc71] hover:bg-[#27ae60] text-white font-semibold shadow-md transition-all group"
+                      disabled={loading}
+                      className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#2ecc71] hover:bg-[#27ae60] disabled:bg-[#2ecc71]/50 disabled:cursor-not-allowed text-white font-semibold shadow-md transition-all group"
                     >
-                      <span>Илгээх</span>
+                      <span>{loading ? "Илгээж байна..." : "Илгээх"}</span>
                       <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </button>
                   </form>
