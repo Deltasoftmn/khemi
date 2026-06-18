@@ -63,7 +63,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Имэйл хаяг</h3>
-                  <p className="text-lg font-bold text-[#0b1e33]">info@almachem.mn</p>
+                  <p className="text-lg font-bold text-[#0b1e33]">info@khimiconsulting.mn</p>
                 </div>
               </div>
 

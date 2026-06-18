@@ -155,7 +155,7 @@ export default function Home() {
                 <Shield className="w-16 h-16 text-slate-400 mb-6 stroke-[1.5]" />
                 <h3 className="text-xl font-bold text-slate-500 mb-4">Аюулгүй ажиллагаа</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Бид мэдлэг, ур чадвараа тасралтгүй хөгжүүлж, хөдөлмөрийн аюулгүй байдал, эрүүл ахуйн стандарт бүхий ажлын байрыг хангадаг.
+                  Бид мэдлэг, ур чадвараа тасралтгүй хөгжүүлж, хөдөлмөрийн аюулгүй байдал, эрүүл ахуйн стандарт бүхий ажлын байраар хангадаг.
                 </p>
               </div>
             </div>
